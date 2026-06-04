@@ -1,5 +1,6 @@
 import "@/lib/set-auth-env";
 import CredentialsProvider from "next-auth/providers/credentials";
+import { getAuthSecret } from "@/lib/auth-secret";
 import { getUsers } from "@/lib/data-store";
 
 export const authOptions = {
@@ -39,5 +40,5 @@ export const authOptions = {
       return session;
     },
   },
-  secret: process.env.NEXTAUTH_SECRET || "ticktock-dev-secret-change-me",
+  secret: getAuthSecret(),
 };

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { signIn } from "next-auth/react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/Button";
 
 function authErrorMessage(code) {
@@ -16,7 +16,6 @@ function authErrorMessage(code) {
 }
 
 export function LoginForm() {
-  const router = useRouter();
   const searchParams = useSearchParams();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -48,11 +47,18 @@ export function LoginForm() {
     }
 
     setLoading(true);
-    const result = await signIn("credentials", {
-      email,
-      password,
-      redirect: false,
-    });
+    let result;
+    try {
+      result = await signIn("credentials", {
+        email,
+        password,
+        redirect: false,
+      });
+    } catch {
+      setLoading(false);
+      setError("Sign-in failed. Please try again.");
+      return;
+    }
     setLoading(false);
 
     if (result?.error) {
@@ -60,8 +66,16 @@ export function LoginForm() {
       return;
     }
 
-    router.push("/timesheets");
-    router.refresh();
+    if (!result?.ok) {
+      setError("Sign-in failed. Please try again.");
+      return;
+    }
+
+    const callbackUrl = searchParams.get("callbackUrl") || "/timesheets";
+    // Full navigation ensures the session cookie is sent (fixes Netlify edge cases).
+    window.location.href = callbackUrl.startsWith("/")
+      ? callbackUrl
+      : "/timesheets";
   };
 
   return (

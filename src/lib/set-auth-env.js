@@ -12,11 +12,10 @@ export function ensureAuthEnv() {
     process.env.AUTH_TRUST_HOST = "true";
   }
 
-  if (process.env.NEXTAUTH_URL) return;
-
   const candidates = [
-    process.env.DEPLOY_URL,
+    process.env.NEXTAUTH_URL,
     process.env.DEPLOY_PRIME_URL,
+    process.env.DEPLOY_URL,
     process.env.URL,
   ].filter(Boolean);
 
