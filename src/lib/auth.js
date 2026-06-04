@@ -25,7 +25,10 @@ export const authOptions = {
     }),
   ],
   session: { strategy: "jwt", maxAge: 24 * 60 * 60 },
-  pages: { signIn: "/login" },
+  pages: {
+    signIn: "/login",
+    error: "/login",
+  },
   callbacks: {
     async jwt({ token, user }) {
       if (user) token.id = user.id;

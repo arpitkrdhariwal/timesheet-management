@@ -1,17 +1,34 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { signIn } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/Button";
+
+function authErrorMessage(code) {
+  if (code === "Configuration") {
+    return "Sign-in is misconfigured. Set NEXTAUTH_SECRET in your environment (Netlify: Site settings → Environment variables), then redeploy.";
+  }
+  if (code === "CredentialsSignin") {
+    return "Invalid email or password";
+  }
+  return code ? "Sign-in failed. Please try again." : "";
+}
 
 export function LoginForm() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const code = searchParams.get("error");
+    const message = authErrorMessage(code);
+    if (message) setError(message);
+  }, [searchParams]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -39,7 +56,7 @@ export function LoginForm() {
     setLoading(false);
 
     if (result?.error) {
-      setError("Invalid email or password");
+      setError(authErrorMessage(result.error) || "Invalid email or password");
       return;
     }
 

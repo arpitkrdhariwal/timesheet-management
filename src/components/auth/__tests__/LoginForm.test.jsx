@@ -5,6 +5,7 @@ import { LoginForm } from "@/components/auth/LoginForm";
 vi.mock("next-auth/react", () => ({ signIn: vi.fn() }));
 vi.mock("next/navigation", () => ({
   useRouter: () => ({ push: vi.fn(), refresh: vi.fn() }),
+  useSearchParams: () => new URLSearchParams(),
 }));
 
 describe("LoginForm", () => {

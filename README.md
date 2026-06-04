@@ -50,6 +50,13 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) — you should land on the **login** page (not the default Next.js starter).
 
+If Next.js starts on another port (e.g. 3001), either stop the other process on 3000 or keep using the URL shown in the terminal — `AUTH_TRUST_HOST` is enabled automatically in development.
+
+If login fails with **`error=Configuration`**:
+
+- **Netlify:** set `NEXTAUTH_SECRET` in environment variables and redeploy.
+- **Local:** ensure `.env.local` has `NEXTAUTH_SECRET` (see `.env.example`), then restart `npm run dev`.
+
 If you see “To get started, edit the page.tsx”, stop the server and run:
 
 ```bash

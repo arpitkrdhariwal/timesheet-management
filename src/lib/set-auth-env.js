@@ -1,8 +1,17 @@
 /**
- * Sets NEXTAUTH_URL from Netlify system env when not configured manually.
- * https://docs.netlify.com/configure-builds/environment-variables/
+ * Auth env for local dev, Netlify, and alternate dev ports (e.g. 3001).
+ * @see https://next-auth.js.org/configuration/options#nextauth_url
+ * @see https://next-auth.js.org/deployment#netlify
  */
 export function ensureAuthEnv() {
+  const isNetlify = Boolean(process.env.NETLIFY);
+  const isDev = process.env.NODE_ENV !== "production";
+
+  // Use the request Host header for callbacks (fixes :3001 vs :3000, preview deploys).
+  if (!process.env.AUTH_TRUST_HOST && (isNetlify || isDev)) {
+    process.env.AUTH_TRUST_HOST = "true";
+  }
+
   if (process.env.NEXTAUTH_URL) return;
 
   const candidates = [
