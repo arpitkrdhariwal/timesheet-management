@@ -4,15 +4,39 @@ A SaaS-style timesheet management application built with **React (JavaScript)** 
 
 Users can log in, view weekly timesheets on a dashboard, and add or edit time entries per week.
 
-## Live demo
+## Live demo (Netlify)
 
-Deploy to [Vercel](https://vercel.com) (or similar) and set `NEXTAUTH_URL` and `NEXTAUTH_SECRET` in environment variables.
+This app is configured for [Netlify](https://www.netlify.com) using the [Netlify Next.js runtime](https://docs.netlify.com/frameworks/next-js/overview/).
+
+### Deploy to Netlify
+
+1. Push the repo to GitHub.
+2. In Netlify: **Add new site** → **Import from Git** → select the repo.
+3. Build settings (auto-detected from `netlify.toml`):
+   - **Build command:** `npm run build`
+   - **Plugin:** `@netlify/plugin-nextjs`
+4. Under **Site configuration → Environment variables**, add:
+
+   | Variable | Value |
+   |----------|--------|
+   | `NEXTAUTH_SECRET` | A long random string (required), e.g. `openssl rand -base64 32` |
+   | `NEXTAUTH_URL` | Optional — auto-set from your Netlify URL. Set manually if using a custom domain, e.g. `https://your-app.netlify.app` |
+
+5. Deploy. Open the site URL → you should see the **login** page.
+
+**Demo login:** `john@example.com` / `password123`
+
+### Netlify notes
+
+- API routes, middleware, and NextAuth run as **serverless functions** (not static export).
+- Mock data is **in-memory** on each server instance. Add/edit works during a session but may reset when Netlify cold-starts a function. Reload seed by redeploying or using `POST /api/seed/reset` (disabled in production).
+- Node **20** is used (see `.nvmrc` and `netlify.toml`).
 
 ## Setup instructions
 
 ### Prerequisites
 
-- Node.js 18+
+- Node.js 20+
 - npm
 
 ### Install and run
@@ -77,7 +101,6 @@ src/
 │   └── ui/               # Badge, Button
 ├── data/                 # JSON seed data (API layer only)
 ├── lib/                  # Shared logic — see docs/CODE_GUIDE.md
-└── types/                # TypeScript interfaces
 ```
 
 **Comfortable with React?** Read [docs/REACT_GUIDE.md](docs/REACT_GUIDE.md) — maps React patterns to this project.
@@ -94,7 +117,7 @@ src/
 
 ## Assumptions & notes
 
-- Mock data lives in `src/data/*.json` and is loaded into an in-memory store on the server (`data-store.js`). Changes persist until the server restarts.
+- Mock data lives in `src/data/*.json` and is loaded into an in-memory store on the server (`data-store.js`). On Netlify, data may reset when serverless functions cold-start.
 - **Completed weeks in seed data:** Week **1**, **6**, and **10** each have exactly **40 hours** (status: COMPLETED). Week 2 and 4 are incomplete; others are missing.
 - If you don't see COMPLETED rows after testing (add/edit/delete), restart `npm run dev` or call `POST /api/seed/reset` while logged in to restore seed data.
 - Date range filter uses preset month ranges; selecting a range that spans multiple weeks returns all matching weeks.
