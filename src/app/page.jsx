@@ -3,6 +3,11 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 
 export default async function HomePage() {
-  const session = await getServerSession(authOptions);
-  redirect(session ? "/timesheets" : "/login");
+  try {
+    const session = await getServerSession(authOptions);
+    redirect(session ? "/timesheets" : "/login");
+  } catch (error) {
+    console.error("Home page session error:", error);
+    redirect("/login");
+  }
 }
