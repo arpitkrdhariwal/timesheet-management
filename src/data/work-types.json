@@ -1,0 +1,6 @@
+[
+  { "id": "1", "name": "Feature development" },
+  { "id": "2", "name": "Bug fixes" },
+  { "id": "3", "name": "Code review" },
+  { "id": "4", "name": "Meetings" }
+]

@@ -1,0 +1,107 @@
+[
+  {
+    "id": "week-1",
+    "weekNumber": 1,
+    "startDate": "2024-01-01",
+    "endDate": "2024-01-05",
+    "dateLabel": "1 - 5 January, 2024"
+  },
+  {
+    "id": "week-2",
+    "weekNumber": 2,
+    "startDate": "2024-01-08",
+    "endDate": "2024-01-12",
+    "dateLabel": "8 - 12 January, 2024"
+  },
+  {
+    "id": "week-3",
+    "weekNumber": 3,
+    "startDate": "2024-01-15",
+    "endDate": "2024-01-19",
+    "dateLabel": "15 - 19 January, 2024"
+  },
+  {
+    "id": "week-4",
+    "weekNumber": 4,
+    "startDate": "2024-01-21",
+    "endDate": "2024-01-26",
+    "dateLabel": "21 - 26 January, 2024"
+  },
+  {
+    "id": "week-5",
+    "weekNumber": 5,
+    "startDate": "2024-01-29",
+    "endDate": "2024-02-02",
+    "dateLabel": "29 January - 2 February, 2024"
+  },
+  {
+    "id": "week-6",
+    "weekNumber": 6,
+    "startDate": "2024-02-05",
+    "endDate": "2024-02-09",
+    "dateLabel": "5 - 9 February, 2024"
+  },
+  {
+    "id": "week-7",
+    "weekNumber": 7,
+    "startDate": "2024-02-12",
+    "endDate": "2024-02-16",
+    "dateLabel": "12 - 16 February, 2024"
+  },
+  {
+    "id": "week-8",
+    "weekNumber": 8,
+    "startDate": "2024-02-19",
+    "endDate": "2024-02-23",
+    "dateLabel": "19 - 23 February, 2024"
+  },
+  {
+    "id": "week-9",
+    "weekNumber": 9,
+    "startDate": "2024-02-26",
+    "endDate": "2024-03-01",
+    "dateLabel": "26 February - 1 March, 2024"
+  },
+  {
+    "id": "week-10",
+    "weekNumber": 10,
+    "startDate": "2024-03-04",
+    "endDate": "2024-03-08",
+    "dateLabel": "4 - 8 March, 2024"
+  },
+  {
+    "id": "week-11",
+    "weekNumber": 11,
+    "startDate": "2024-03-11",
+    "endDate": "2024-03-15",
+    "dateLabel": "11 - 15 March, 2024"
+  },
+  {
+    "id": "week-12",
+    "weekNumber": 12,
+    "startDate": "2024-03-18",
+    "endDate": "2024-03-22",
+    "dateLabel": "18 - 22 March, 2024"
+  },
+  {
+    "id": "week-13",
+    "weekNumber": 13,
+    "startDate": "2024-03-25",
+    "endDate": "2024-03-29",
+    "dateLabel": "25 - 29 March, 2024"
+  },
+  {
+    "id": "week-14",
+    "weekNumber": 14,
+    "startDate": "2024-04-01",
+    "endDate": "2024-04-05",
+    "dateLabel": "1 - 5 April, 2024"
+  },
+  {
+    "id": "week-15",
+    "weekNumber": 15,
+    "startDate": "2024-04-08",
+    "endDate": "2024-04-12",
+    "dateLabel": "8 - 12 April, 2024"
+  }
+]
